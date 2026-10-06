@@ -8,6 +8,8 @@ spring:
   jackson:
     property-naming-strategy: SNAKE_CASE
     default-property-inclusion: always
+    deserialization:
+      accept-float-as-int: false
   servlet:
     multipart:
       max-file-size: 10MB

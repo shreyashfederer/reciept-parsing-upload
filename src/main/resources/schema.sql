@@ -10,8 +10,10 @@ CREATE TABLE IF NOT EXISTS receipts (
   processed_at      TEXT
 );
 
+-- No AUTOINCREMENT: SQLite burns a sequence value on every upsert that resolves to an UPDATE, so each
+-- re-process would leave an id gap. Transactions are never deleted, so rowid reuse cannot happen.
 CREATE TABLE IF NOT EXISTS transactions (
-  id                INTEGER PRIMARY KEY AUTOINCREMENT,
+  id                INTEGER PRIMARY KEY,
   receipt_id        INTEGER NOT NULL UNIQUE REFERENCES receipts(id) ON DELETE RESTRICT,
   merchant          TEXT    NOT NULL,
   txn_date          TEXT    NOT NULL,
