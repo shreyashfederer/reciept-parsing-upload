@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: receipts
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+    default-property-inclusion: always
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  mvc:
+    problemdetails:
+      enabled: true
+app:
+  data-dir: ./data
+  db-pool-size: 4
